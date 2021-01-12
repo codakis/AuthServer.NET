@@ -1,3 +1,4 @@
+using AuthServer.NET.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -43,8 +44,11 @@ namespace AuthServer.NET
             app.UseStaticFiles();
 
             app.UseRouting();
+            //Cors maybe
 
-            app.UseAuthorization();
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
